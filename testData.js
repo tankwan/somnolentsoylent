@@ -6,10 +6,7 @@ var eventModels = require('./server/models/eventModels');
 var friendModels = require('./server/models/friendModels');
 mongoose.Promise = require('bluebird');
 
-if (!process.env.MONGODB_URI) {
- mongoose.connect('mongodb://localhost/sembly'); 
-}
-    
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/sembly');    
 
 //DATA
 var users = [
@@ -87,9 +84,9 @@ var events = [
 
 mongoose.connection.on('connected', () => {
   //Populate Database
-  User.remove({}).exec()
+  User.collection.remove({}).exec()
   .then(() => {
-    return Event.remove({}).exec();
+    return Event.collection.remove({}).exec();
   })
   .then(()=> {
     users = users.map(user => new User(user));

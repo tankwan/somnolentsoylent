@@ -7,8 +7,8 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 // connect to mongo database named "sembly"
-if (process.env.PRODUCTION == 'true') {
-  mongoose.connect(process.env.MONGODB_URI.toString())
+if (process.env.PRODUCTION === 'true') {
+  mongoose.connect(process.env.MONGODB_URI.toString());
 } else if (process.argv[2] === 'production') {
   mongoose.connect('mongodb://localhost/sembly');
 }
@@ -23,7 +23,7 @@ mongoose.connection.on('connected', () => {
 		require('../testData.js');
 	}
 	app.listen(port, () => {
-    console.log('App is listening on port 3000')
+    console.log('App is listening on port 3000');
   });
 });
 
