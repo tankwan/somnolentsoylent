@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/apologeticcookie/somnolentsoylent.png?label=ready&title=Ready)](https://waffle.io/apologeticcookie/somnolentsoylent)
 # Sembly
 
 > Pithy project description
