@@ -84,9 +84,9 @@ var events = [
 
 mongoose.connection.on('connected', () => {
   //Populate Database
-  User.collection.remove({}).exec()
+  User.remove({}).exec()
   .then(() => {
-    return Event.collection.remove({}).exec();
+    return Event.remove({}).exec();
   })
   .then(()=> {
     users = users.map(user => new User(user));
@@ -103,16 +103,16 @@ mongoose.connection.on('connected', () => {
     return Promise.all(events.map(event => eventModels.addEvent(event)));
   })
   .then(events => {
-    return Event.findOne({'name': 'Basketball'})
+    return Event.findOne({'name': 'Basketball'});
   })
   .then(event => {
-    return eventModels.saveEvent(event._id, users[0]._id)
+    return eventModels.saveEvent(event._id, users[0]._id);
   })
   .then(success => {
-    return Promise.all([friendModels.addFriend(users[0]._id, users[2]._id), friendModels.addFriend(users[1]._id, users[0]._id), friendModels.addFriend(users[0]._id, users[3]._id)]) 
+    return Promise.all([friendModels.addFriend(users[0]._id, users[2]._id), friendModels.addFriend(users[1]._id, users[0]._id), friendModels.addFriend(users[0]._id, users[3]._id)]);
   })
   .then(success => {
-    return Promise.all([friendModels.acceptFriend(users[2]._id, users[0]._id), friendModels.acceptFriend(users[3]._id, users[0]._id)])
+    return Promise.all([friendModels.acceptFriend(users[2]._id, users[0]._id), friendModels.acceptFriend(users[3]._id, users[0]._id)]);
   })
   .then(success => {
     console.log('Database populated');
